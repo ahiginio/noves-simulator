@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { ERC20ABI } from '@/data/abi.tsx'
+import { ERC20ABI } from '@/data/abi'
 import { TransactionData } from '@/types';
 
 interface Chain {
@@ -30,11 +30,8 @@ export const useFetch = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [chains, setChains] = useState<Chain[]>([]);
   const [block, setBlock] = useState<object | null>(null);
-<<<<<<< HEAD:src/app/hooks/useFetch.tsx
   const [contractMethods, setContractMethods] = useState<object | null>(null);
-=======
   const [transaction, setTransaction] = useState<TransactionData | null>(null);
->>>>>>> fab4733090ee2c67f917ffa3eac35d30a7f1c9a3:src/hooks/useFetch.tsx
 
   const getChains = async () => {
     setIsFetching(true);
