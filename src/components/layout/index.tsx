@@ -2,7 +2,7 @@ import { Icons } from '@/components/icons';
 import { Sidebar } from '@/components/sidebar';
 
 export default function DashboardLayout({ children }) {
-  const location = useLocation();
+  // const location = useLocation();
   return (
     <>
       <div className="hidden flex-col md:flex">
