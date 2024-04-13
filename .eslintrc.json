@@ -1,37 +1,9 @@
- {
-   "env": {
-     "browser": true,
-     "es2021": true
-   },
-   "extends": [
-     "eslint:recommended",
-     "plugin:@typescript-eslint/recommended",
-     "plugin:react/recommended",
-     "plugin:prettier/recommended"
-   ],
-   "parser": "@typescript-eslint/parser",
-   "parserOptions": {
-     "ecmaVersion": "latest",
-     "ecmaFeatures": {
-       "jsx": true
-     },
-     "sourceType": "module"
-   },
-   "plugins": ["@typescript-eslint", "react", "prettier"],
-   "rules": {
-     "react/react-in-jsx-scope": "off",
-     "react/prop-types": 0,
-     "no-unused-vars": "off",
-     "react/jsx-key": 1,
-     "react/no-unknown-property": 0,
-     "no-empty-pattern": "off"
-   },
-   "settings": {
-     "react": {
-       "version": "detect"
-     },
-     "import/resolver": {
-       "typescript": {}
-     }
-   }
- }
+{
+  "extends": ["next/core-web-vitals",  "plugin:prettier/recommended"],
+
+  "rules": {
+    "no-unused-vars": "error",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "no-console": "warn"
+  }
+}
