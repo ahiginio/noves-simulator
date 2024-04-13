@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { ERC20ABI } from '@/data/abi'
+import { ERC20ABI } from '@/data/abi';
 import { TransactionData } from '@/types';
 
 interface Chain {
@@ -64,7 +64,6 @@ export const useFetch = () => {
       });
   };
 
-<<<<<<< HEAD:src/app/hooks/useFetch.tsx
   const getContractMethods = () => {
     setContractMethods(
       ERC20ABI.map((method) => {
@@ -73,8 +72,6 @@ export const useFetch = () => {
     );
   };
 
-  return { getChains, chains, getBlock, block, isFetching, getContractMethods };
-=======
   const getTransaction = (chainSelected: string, txHash: string) => {
     setIsFetching(true);
     axiosNoves.get(`/evm/${chainSelected}/tx/${txHash}`).then((res) => {
@@ -84,6 +81,14 @@ export const useFetch = () => {
     });
   };
 
-  return { getChains, chains, getBlock, block, isFetching, getTransaction, transaction };
->>>>>>> fab4733090ee2c67f917ffa3eac35d30a7f1c9a3:src/hooks/useFetch.tsx
+  return {
+    getTransaction,
+    transaction,
+    getChains,
+    chains,
+    getBlock,
+    block,
+    isFetching,
+    getContractMethods,
+  };
 };
