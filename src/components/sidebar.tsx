@@ -1,11 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { menu } from '@/data/menu';
 import { cn } from '@/lib/utils';
-import { DefaultPageProps } from '@/t';
-import { NavLink, useLocation } from 'react-router-dom';
+import { DefaultPageProps } from '@/types';
 
 export function Sidebar({ className }: DefaultPageProps) {
-  const location = useLocation();
+ /*  const location = useLocation(); */
   return (
     <div className={cn('pb-12 h-[93.8vh]', className)}>
       <div className="space-y-4 py-4">

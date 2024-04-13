@@ -1,8 +1,10 @@
 import { Icons } from '@/components/icons';
 import { Sidebar } from '@/components/sidebar';
 
-export default function DashboardLayout({ children }) {
-  const location = useLocation();
+export default function DashboardLayout({children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <>
       <div className="hidden flex-col md:flex">
