@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/select';
 
 interface Props extends InputProps {
-  description?: string;
+  description?: React.ReactNode | string;
   name: string;
   label: string;
   placeholder?: string;
@@ -57,8 +57,10 @@ export default function FormSelect(props: Props) {
               ))}
             </SelectContent>
           </Select>
-          {props.description && (
+          {typeof props.description === 'string' ? (
             <FormDescription className="text-xs text-gray-400">{props.description}</FormDescription>
+          ) : (
+            props.description
           )}
           <FormMessage />
         </FormItem>

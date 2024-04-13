@@ -2,6 +2,8 @@ import * as React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import cors from 'cors';
+
 import { cn } from '@/lib/utils';
 import DashboardLayout from '@/components/layout';
 import axios from 'axios';

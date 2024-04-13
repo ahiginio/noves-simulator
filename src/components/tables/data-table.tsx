@@ -35,6 +35,7 @@ interface DataTableProps<TData, TValue> {
   isFetching: boolean;
   totalCount: number;
   fetchData: () => void;
+  toolbarVisible?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -43,6 +44,7 @@ export function DataTable<TData, TValue>({
   isFetching,
   totalCount,
   fetchData,
+  toolbarVisible = true,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -127,7 +129,9 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full space-y-4">
-      <DataTableToolbar table={table} fetchedItems={data.length} totalCount={totalCount} />
+      {toolbarVisible && (
+        <DataTableToolbar table={table} fetchedItems={data.length} totalCount={totalCount} />
+      )}
 
       <div
         className="rounded-md border"

@@ -17,13 +17,19 @@ interface EVMResponse {
 export const axiosNoves = axios.create({
   baseURL: 'https://translate.dev.noves.fi',
   timeout: 1000,
-  headers: { apiKey: 'dd' },
+  headers: { apiKey: 'dd', 'Content-Type': 'application/json' },
+});
+
+export const axiosNovesSimulator = axios.create({
+  baseURL: 'https://simulator-backend.dev.noves.fi',
+  timeout: 1000,
+  headers: { apiKey: 'dd', 'Content-Type': 'application/json' },
 });
 
 const axiosRPCBalancer = axios.create({
-  baseURL: 'https://rpc.balancer.dev.noves.fi',
+  baseURL: 'https://rpc-load-balancer.dev.noves.fi',
   timeout: 1000,
-  headers: { apiKey: 'dd' },
+  headers: { 'Content-Type': 'application/json' },
 });
 
 export const useFetch = () => {
@@ -56,6 +62,7 @@ export const useFetch = () => {
         method: 'eth_blockNumber',
         id,
         params: [],
+        json_rpc: '2.0',
       })
       .then((res) => {
         const data = res.data;
@@ -72,17 +79,13 @@ export const useFetch = () => {
     );
   };
 
-  const getTransaction = (chainSelected: string, txHash: string) => {
-    setIsFetching(true);
-    axiosNoves.get(`/evm/${chainSelected}/tx/${txHash}`).then((res) => {
-      const data: TransactionData = res.data;
-      setTransaction(data);
-      setIsFetching(false);
+  const simulateTransaction = async (payload: any) => {
+    axiosNovesSimulator.post('/simulate', payload).then((res) => {
+      setTransaction(res.data);
     });
   };
 
   return {
-    getTransaction,
     transaction,
     getChains,
     chains,
@@ -90,5 +93,7 @@ export const useFetch = () => {
     block,
     isFetching,
     getContractMethods,
+    contractMethods,
+    simulateTransaction,
   };
 };
