@@ -1,6 +1,8 @@
+import * as React from 'react';
 import { Icons } from '@/components/icons';
 
-export default function DashboardLayout({children,
+export default function DashboardLayout({
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
