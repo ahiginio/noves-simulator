@@ -7,19 +7,34 @@ import FormWrapper from '@/components/forms/form-wrapper';
 import { Button } from '@/components/ui/button';
 import { useEffect } from 'react';
 import { useFetch } from './hooks/useFetch';
+import EditChainCard from '@/components/ui/edit-chain-card';
 
 export default function Home() {
-  const { chains, getChains, getBlock, block, isFetching } = useFetch();
+  const { chains, getChains, getBlock, block, getContractMethods, isFetching } = useFetch();
 
   useEffect(() => {
     getChains();
   }, [getChains]);
 
+  useEffect(() => {
+    getContractMethods();
+  }, [chains]);
+
   return (
     <FormWrapper>
       <CardWrapper title="Contract">
-        <FormInput label="asdasd" name="asd" />
-        <FormSelect name="block-number" label="Block number" items={chains} />
+        <FormInput label="Contract address" name="address" />
+        <FormSelect
+          name="block-number"
+          label="Network"
+          placeholder="Select network for this address"
+          items={chains}
+          description={
+            <div>
+              <EditChainCard isFetching={true} />
+            </div>
+          }
+        />
       </CardWrapper>
       <CardWrapper title="Transaction Parameters">
         <FormSwitch label="Use pending block" name="pending-block" />

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
+import ERC20ABI from '../../data/json/abi.json';
+
 interface Chain {
   id: string;
   label: string;
@@ -16,6 +18,7 @@ const axiosNoves = axios.create({
   timeout: 1000,
   headers: { apiKey: 'dd' },
 });
+
 const axiosRPCBalancer = axios.create({
   baseURL: 'https://rpc.balancer.dev.noves.fi',
   timeout: 1000,
@@ -26,6 +29,7 @@ export const useFetch = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [chains, setChains] = useState<Chain[]>([]);
   const [block, setBlock] = useState<object | null>(null);
+  const [contractMethods, setContractMethods] = useState<object | null>(null);
 
   const getChains = async () => {
     setIsFetching(true);
@@ -55,5 +59,13 @@ export const useFetch = () => {
       });
   };
 
-  return { getChains, chains, getBlock, block, isFetching };
+  const getContractMethods = () => {
+    setContractMethods(
+      ERC20ABI.map((method) => {
+        return { id: method.name, label: method.name };
+      })
+    );
+  };
+
+  return { getChains, chains, getBlock, block, isFetching, getContractMethods };
 };
