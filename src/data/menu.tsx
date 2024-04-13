@@ -1,1 +1,1 @@
-export const menu = []
+export const menu = [];
