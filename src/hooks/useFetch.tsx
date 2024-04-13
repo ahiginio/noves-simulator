@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import ERC20ABI from '../../data/json/abi.json';
+import { ERC20ABI } from '@/data/abi.tsx'
+import { TransactionData } from '@/types';
 
 interface Chain {
   id: string;
@@ -13,7 +14,7 @@ interface EVMResponse {
   ecosystem: string;
 }
 
-const axiosNoves = axios.create({
+export const axiosNoves = axios.create({
   baseURL: 'https://translate.dev.noves.fi',
   timeout: 1000,
   headers: { apiKey: 'dd' },
@@ -29,11 +30,15 @@ export const useFetch = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [chains, setChains] = useState<Chain[]>([]);
   const [block, setBlock] = useState<object | null>(null);
+<<<<<<< HEAD:src/app/hooks/useFetch.tsx
   const [contractMethods, setContractMethods] = useState<object | null>(null);
+=======
+  const [transaction, setTransaction] = useState<TransactionData | null>(null);
+>>>>>>> fab4733090ee2c67f917ffa3eac35d30a7f1c9a3:src/hooks/useFetch.tsx
 
   const getChains = async () => {
     setIsFetching(true);
-    axiosNoves.get(`/evm/chains`).then((res) => {
+    /* axiosNoves.get(`/evm/chains`).then((res) => {
       const data: EVMResponse[] = res.data;
       setChains(
         data.map((d) => {
@@ -41,12 +46,15 @@ export const useFetch = () => {
         })
       );
       setIsFetching(false);
-    });
+    }); */
+    setChains(chains);
+    setIsFetching(false);
+    return chains;
   };
 
   const getBlock = (id: string) => {
     setIsFetching(true);
-    axiosNoves
+    axiosRPCBalancer
       .post(`/eth_archive`, {
         method: 'eth_blockNumber',
         id,
@@ -59,6 +67,7 @@ export const useFetch = () => {
       });
   };
 
+<<<<<<< HEAD:src/app/hooks/useFetch.tsx
   const getContractMethods = () => {
     setContractMethods(
       ERC20ABI.map((method) => {
@@ -68,4 +77,16 @@ export const useFetch = () => {
   };
 
   return { getChains, chains, getBlock, block, isFetching, getContractMethods };
+=======
+  const getTransaction = (chainSelected: string, txHash: string) => {
+    setIsFetching(true);
+    axiosNoves.get(`/evm/${chainSelected}/tx/${txHash}`).then((res) => {
+      const data: TransactionData = res.data;
+      setTransaction(data);
+      setIsFetching(false);
+    });
+  };
+
+  return { getChains, chains, getBlock, block, isFetching, getTransaction, transaction };
+>>>>>>> fab4733090ee2c67f917ffa3eac35d30a7f1c9a3:src/hooks/useFetch.tsx
 };
