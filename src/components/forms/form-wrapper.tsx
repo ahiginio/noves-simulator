@@ -7,7 +7,8 @@ import { z } from 'zod';
 
 export interface FormProps extends HTMLAttributes<HTMLDivElement> {}
 
-export default function FormExample({ className, ...props }: FormProps) {
+export default function FormWrapper({ className, ...props }: FormProps) {
+  /* TODO:  */
   const schema = z.object({});
 
   const form = useForm<z.infer<typeof schema>>({
@@ -24,11 +25,9 @@ export default function FormExample({ className, ...props }: FormProps) {
 
   return (
     <FormProvider {...form}>
-      <div className={cn('grid gap-6', className)} {...props}>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
-          {props.children}
-        </form>
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-10 p-20">
+        {props.children}
+      </form>
     </FormProvider>
   );
 }

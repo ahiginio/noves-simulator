@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import DashboardLayout from '@/components/layout';
-
+import axios from 'axios';
 const fontSans = Inter({
   subsets: ['latin'],
   variable: '--font-sans',

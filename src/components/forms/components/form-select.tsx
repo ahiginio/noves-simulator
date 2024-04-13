@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import {
   FormControl,
@@ -45,9 +46,7 @@ export default function FormSelect(props: Props) {
             disabled={props.disabled}>
             <FormControl>
               <SelectTrigger>
-                <SelectValue
-                  placeholder={props.placeholder || 'Select a verified email to display'}
-                />
+                <SelectValue placeholder={props.placeholder || 'Select one'} />
               </SelectTrigger>
             </FormControl>
             <SelectContent>

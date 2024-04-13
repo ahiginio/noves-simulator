@@ -19,9 +19,7 @@ export default function DashboardLayout({
         {/* Top Menu */}
         <div className="border-t">
           <div className="bg-background">
-            <div className="grid lg:grid-cols-6">
-              <div className="col-span-3 lg:col-span-5 lg:border-l">{children}</div>
-            </div>
+            <div className="flex justify-center items-center">{children}</div>
           </div>
         </div>
       </div>
