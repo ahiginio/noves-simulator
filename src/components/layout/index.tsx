@@ -1,5 +1,4 @@
 import { Icons } from '@/components/icons';
-import { Sidebar } from '@/components/sidebar';
 
 export default function DashboardLayout({children,
 }: Readonly<{
@@ -19,7 +18,6 @@ export default function DashboardLayout({children,
         <div className="border-t">
           <div className="bg-background">
             <div className="grid lg:grid-cols-6">
-              <Sidebar className="hidden lg:block col-span-1" />
               <div className="col-span-3 lg:col-span-5 lg:border-l">{children}</div>
             </div>
           </div>
